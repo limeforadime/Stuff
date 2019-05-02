@@ -15,13 +15,14 @@ import javax.imageio.ImageIO;
  * @author <b><u>dave</b></u>
  *
  */
+
 public class ConvertToCirclePicture
 {
 	public static void main(String[] args) throws FileNotFoundException
 	{	
 		//IMAGE SOURCE
-		File originalImage = new File("C:\\Java\\Tutorial\\original.png");
-		PrintWriter out = new PrintWriter("C:\\Java\\Tutorial\\out.txt");
+		File originalImage = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\turtle.png");
+		PrintWriter out = new PrintWriter("C:\\Users\\Public\\Pictures\\Sample Pictures\\Output.png");
 	
 		BufferedImage img = null;
 		try {
@@ -69,32 +70,22 @@ public class ConvertToCirclePicture
 					int b = c.getBlue();
 					int a = c.getAlpha();
 					
-					angle = Math.atan2((yRes/2.0)-y, (xRes/2.0)-x) * (180/Math.PI) ;
 					radius = Math.sqrt(Math.pow(xRes/2.0 - x, 2) + Math.pow(yRes/2.0 - y, 2));
+					angle = Math.acos(((yRes/2.0)-y)/radius) * (180/Math.PI) ;
+					
 					if (radius > 32)
 						radius = 32.0;
 					
-					System.out.println("true angle: "+ angle);
-					
+					//System.out.println( "true angle: "+ angle);					
 				//QUADRANT SHIFTS
-					
-					if ( y > yRes/2.0)
+
+					if (x < xRes/2.0)
 					{
-						angle = angle + 90; //assumed to be degrees
-						
+						angle = 360 - angle ; 
 					}
 					
-					if (x < xRes/2.0 ) 
-					{
-						angle = angle + 90;
-						if (y < xRes/2.0)
-						{
-							angle = angle + 180;
-						}
-					}
-					
-					System.out.println("radius: "+ radius);
-					System.out.println("angle: "+ angle);
+					//System.out.println("radius: "+ radius);
+					//System.out.println( x + "," + y + " angle: "+ angle);
 
 					int gr = (r + g + b) / 3;
 
@@ -117,7 +108,7 @@ public class ConvertToCirclePicture
 				}
 			}
 		
-			//ImageIO.write(tempImage, "png", new File("C:\\Java\\Tutorial\\grayscale.png"));
+			//ImageIO.write(tempImage, "png", new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\Output.png"));
 			for (int y = 0; y < yCircleRes; y++){
 				for (int x = 0; x < xCircleRes; x++){
 					if(circle[x][y] < 150)
