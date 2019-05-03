@@ -9,13 +9,6 @@ import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 
-/********
- * butt stuff
- * @param shit
- * @author <b><u>dave</b></u>
- *
- */
-
 public class ConvertToCirclePicture
 {
 	public static void main(String[] args) throws FileNotFoundException
@@ -118,7 +111,6 @@ public class ConvertToCirclePicture
 				}
 			}
 			
-			
 			//SECTION TO DISPLAY CIRCULAR PICTURE
 			for (int y = 0; y < yCircleRes; y++){
 				for (int x = 0; x < xCircleRes; x++){
@@ -132,9 +124,4 @@ public class ConvertToCirclePicture
 		}
 		out.close();
 	}
-	
-	
-	
-	
-	
 }
